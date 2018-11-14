@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9BB63F07219C625F00BEB6BE /* SampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB63F06219C625F00BEB6BE /* SampleViewController.swift */; };
 		C5060C1C219BB83E00CCFE51 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5060C1B219BB83E00CCFE51 /* Model.swift */; };
 		C5060C1E219BB88900CCFE51 /* extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5060C1D219BB88900CCFE51 /* extension.swift */; };
 		C54E291B219579AC006E2BD9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54E291A219579AC006E2BD9 /* AppDelegate.swift */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9BB63F06219C625F00BEB6BE /* SampleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SampleViewController.swift; path = ../../../Downloads/SwiftPDFSample/PDFSample/SampleViewController.swift; sourceTree = "<group>"; };
 		C5060C1B219BB83E00CCFE51 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		C5060C1D219BB88900CCFE51 /* extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extension.swift; sourceTree = "<group>"; };
 		C54E2917219579AC006E2BD9 /* PDFSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PDFSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -60,6 +62,7 @@
 			children = (
 				C54E291A219579AC006E2BD9 /* AppDelegate.swift */,
 				C54E291C219579AC006E2BD9 /* ViewController.swift */,
+				9BB63F06219C625F00BEB6BE /* SampleViewController.swift */,
 				C5060C1B219BB83E00CCFE51 /* Model.swift */,
 				C5060C1D219BB88900CCFE51 /* extension.swift */,
 				C54E291E219579AC006E2BD9 /* Main.storyboard */,
@@ -141,6 +144,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9BB63F07219C625F00BEB6BE /* SampleViewController.swift in Sources */,
 				C5060C1C219BB83E00CCFE51 /* Model.swift in Sources */,
 				C54E291D219579AC006E2BD9 /* ViewController.swift in Sources */,
 				C54E291B219579AC006E2BD9 /* AppDelegate.swift in Sources */,
