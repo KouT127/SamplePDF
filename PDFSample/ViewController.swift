@@ -16,21 +16,21 @@ class ViewController: UIViewController {
         
         let pdf = PDFDocument()
         
-        let header1 = HeaderContent(title: "あ:", content: "ヘッダー内容")
-        let header2 = HeaderContent(title: "あいう:", content: "ヘッダー内容")
-        let header3 = HeaderContent(title: "あいうえお:", content: "ヘッダー内容")
-        let header4 = HeaderContent(title: "あいうえお", content: "ヘッダー内容")
+        let header1 = HeaderContent(title: "あいう:", content: "あいうえおかきくけこあいうえおかきくけこあいうえおかきくけこ", line: 2)
+        let header2 = HeaderContent(title: "あいうえ:", content: "1234567890123456789012345678901234567890", line: 2)
+        let header3 = HeaderContent(title: "あいうえ:", content: "2018/12/12 00:00")
+        let header4 = HeaderContent(title: "あい:", content: "あいう　えおか")
         let headers = [header1, header2, header3, header4]
         var content = GridContent(code: "123456789012345023456789012345", name: "あいうえおかきくけこさしすせそたちつてと", qty: 10000)
         var contents: [GridContent] = []
         
-        for i in 100 ..< 111 {
+        for i in 1 ..< 14 {
             content.no = i
             contents.append(content)
         }
         
         let data = FormContent(title: "サンプル", headers: headers, contents: contents)
-        let setting = LayoutSetting(formContent: data, width: 1020, height: 1700)
+        let setting = LayoutSetting(page: .first, formContent: data, width: 1020, height: 1600)
         
         let firstPage = PdfForm(formContent: data, setting: setting)
         
@@ -104,11 +104,12 @@ class PdfForm: PDFPage {
             let titleRect = CGRect(x: headerHorizontal, y: headerVertical, width: setting.writableWidth / 2, height: setting.headerEndY)
             header.title.draw(in: titleRect, withAttributes: attributes)
             
-            let contentOffsetVertical = header.title.count * setting.headerFontSize
-            let contentRect  = CGRect(x: headerHorizontal + contentOffsetVertical, y: headerVertical, width: setting.writableWidth / 2, height: setting.headerEndY)
+            let contentOffsetVertical = (header.title.count - 1) * setting.headerFontSize
+            let contentRect  = CGRect(x: headerHorizontal + contentOffsetVertical + firstCharacterOffset, y: headerVertical, width: setting.writableWidth, height: setting.headerEndY)
             header.content.draw(in: contentRect, withAttributes: attributes)
-            cnt += 1
-            line += 1
+            //何行占領するか
+            cnt += header.line
+            line += header.line
         }
     
     }
@@ -122,25 +123,27 @@ class PdfForm: PDFPage {
         let endVertical = setting.contentHeaderEndY
         let endHorizontal = setting.endX
         
+        let firstVerticalOffset = setting.firstVerticalOffset
+        
         let attributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: CGFloat(fontSize)),
                           NSAttributedString.Key.foregroundColor: UIColor.black]
-        // No: 0.1 code: 0.3, name: 0.4, qty: 0.1 の割合
-        let codeHorizontal = Double(width) * 0.07
-        let nameHorizontal = Double(width) * 0.34
-        let qtyHorizontal = Double(width) * 0.9
+        // No: 0.07 code: 0.27, name: 0.56, qty: 0.2 の割合
+        let codeHorizontal = Double(width) * 0.08
+        let nameHorizontal = Double(width) * 0.37
+        let qtyHorizontal = Double(width) * 0.83
         
         let content = contents.first
         
-        let noRect = CGRect(x: horizontal + firstCharacterOffset, y: vertical + 10 , width: width, height: endVertical)
+        let noRect = CGRect(x: horizontal + firstCharacterOffset, y: vertical + firstVerticalOffset , width: width, height: endVertical)
         content?.noTitle.draw(in: noRect, withAttributes: attributes)
         
-        let codeRect = CGRect(x: Int(codeHorizontal) + firstCharacterOffset, y: vertical + 10 , width: width, height: endVertical)
+        let codeRect = CGRect(x: Int(codeHorizontal) + firstCharacterOffset, y: vertical + firstVerticalOffset , width: width, height: endVertical)
         content?.codeTitle.draw(in: codeRect, withAttributes: attributes)
         
-        let nameRect = CGRect(x: Int(nameHorizontal) + firstCharacterOffset, y: vertical + 10 , width: width, height: endVertical)
+        let nameRect = CGRect(x: Int(nameHorizontal) + firstCharacterOffset, y: vertical + firstVerticalOffset , width: width, height: endVertical)
         content?.nameTitle.draw(in: nameRect, withAttributes: attributes)
         
-        let qtyRect = CGRect(x: Int(qtyHorizontal) + firstCharacterOffset, y: vertical + 10 , width: width, height: endVertical)
+        let qtyRect = CGRect(x: Int(qtyHorizontal) + firstCharacterOffset, y: vertical + firstVerticalOffset , width: width, height: endVertical)
         content?.qtyTitle.draw(in: qtyRect, withAttributes: attributes)
         
         //縦線
@@ -159,15 +162,18 @@ class PdfForm: PDFPage {
         //行間のサイズ
         let offset = endVertical - vertical
         
+        let firstVerticalOffset = setting.firstVerticalOffset
+        let secondVerticalOffset = setting.secondVerticalOffset
+        
         let horizontal = setting.startX
         let endHorizontal = setting.endX
         
         let attributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: CGFloat(fontSize)),
                           NSAttributedString.Key.foregroundColor: UIColor.black]
-        // No: 0.1 code: 0.3, name: 0.4, qty: 0.2 の割合
-        let codeHorizontal = Double(width) * 0.07
-        let nameHorizontal = Double(width) * 0.34
-        let qtyHorizontal = Double(width) * 0.9
+        // No: 0.07 code: 0.27, name: 0.56, qty: 0.2 の割合
+        let codeHorizontal = Double(width) * 0.08
+        let nameHorizontal = Double(width) * 0.37
+        let qtyHorizontal = Double(width) * 0.83
         
         for content in contents {
             
@@ -178,21 +184,20 @@ class PdfForm: PDFPage {
             
             let (firstCode, secondCode) = content.code.split(range: 15)
             
-            let codeRect = CGRect(x: Int(codeHorizontal) + firstCharacterOffset, y: vertical + 10 , width: width, height: endVertical)
+            let codeRect = CGRect(x: Int(codeHorizontal) + firstCharacterOffset, y: vertical + firstVerticalOffset , width: width, height: endVertical)
             firstCode.draw(in: codeRect, withAttributes: attributes)
-            let secondCodeRect = CGRect(x: Int(codeHorizontal) + firstCharacterOffset, y: vertical + 60 , width: width, height: endVertical)
+            let secondCodeRect = CGRect(x: Int(codeHorizontal) + firstCharacterOffset, y: vertical + secondVerticalOffset , width: width, height: endVertical)
             secondCode.draw(in: secondCodeRect, withAttributes: attributes)
             
-            let (firstName, secondName) = content.name.split(range: 20)
+            let (firstName, secondName) = content.name.split(range: 15)
             
-            let firstNameRect = CGRect(x: Int(nameHorizontal) + firstCharacterOffset, y: vertical + 10 , width: width, height: endVertical)
+            let firstNameRect = CGRect(x: Int(nameHorizontal) + firstCharacterOffset, y: vertical + firstVerticalOffset , width: width, height: endVertical)
             firstName.draw(in: firstNameRect, withAttributes: attributes)
-            let secondNameRect = CGRect(x: Int(nameHorizontal) + firstCharacterOffset, y: vertical + 60 , width: width, height: endVertical)
+            let secondNameRect = CGRect(x: Int(nameHorizontal) + firstCharacterOffset, y: vertical + secondVerticalOffset , width: width, height: endVertical)
             secondName.draw(in: secondNameRect, withAttributes: attributes)
             
-            let qtyRect = CGRect(x: Int(qtyHorizontal) + firstCharacterOffset, y: vertical + 10 , width: width, height: endVertical)
-            "99,999".draw(in: qtyRect, withAttributes: attributes)
-            //content.qty.description.draw(in: qtyRect, withAttributes: attributes)
+            let qtyRect = CGRect(x: Int(qtyHorizontal) + firstCharacterOffset, y: vertical + firstVerticalOffset , width: width, height: endVertical)
+            content.qty.description.draw(in: qtyRect, withAttributes: attributes)
             
             //縦線
             verticalGridDraw(xPoints: [horizontal, Int(codeHorizontal), Int(nameHorizontal), Int(qtyHorizontal), endHorizontal], startY: vertical, endY: endVertical)
