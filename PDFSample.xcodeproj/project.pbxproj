@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C5060C1C219BB83E00CCFE51 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5060C1B219BB83E00CCFE51 /* Model.swift */; };
+		C5060C1E219BB88900CCFE51 /* extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5060C1D219BB88900CCFE51 /* extension.swift */; };
 		C54E291B219579AC006E2BD9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54E291A219579AC006E2BD9 /* AppDelegate.swift */; };
 		C54E291D219579AC006E2BD9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54E291C219579AC006E2BD9 /* ViewController.swift */; };
 		C54E2920219579AC006E2BD9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C54E291E219579AC006E2BD9 /* Main.storyboard */; };
@@ -15,6 +17,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C5060C1B219BB83E00CCFE51 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		C5060C1D219BB88900CCFE51 /* extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extension.swift; sourceTree = "<group>"; };
 		C54E2917219579AC006E2BD9 /* PDFSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PDFSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C54E291A219579AC006E2BD9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C54E291C219579AC006E2BD9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -56,6 +60,8 @@
 			children = (
 				C54E291A219579AC006E2BD9 /* AppDelegate.swift */,
 				C54E291C219579AC006E2BD9 /* ViewController.swift */,
+				C5060C1B219BB83E00CCFE51 /* Model.swift */,
+				C5060C1D219BB88900CCFE51 /* extension.swift */,
 				C54E291E219579AC006E2BD9 /* Main.storyboard */,
 				C54E2921219579B4006E2BD9 /* Assets.xcassets */,
 				C54E2923219579B4006E2BD9 /* LaunchScreen.storyboard */,
@@ -135,8 +141,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C5060C1C219BB83E00CCFE51 /* Model.swift in Sources */,
 				C54E291D219579AC006E2BD9 /* ViewController.swift in Sources */,
 				C54E291B219579AC006E2BD9 /* AppDelegate.swift in Sources */,
+				C5060C1E219BB88900CCFE51 /* extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,13 +291,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = DCRVG4K4H7;
+				DEVELOPMENT_TEAM = 5YB9W4WX6T;
 				INFOPLIST_FILE = PDFSample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = Kou.SamplePDF;
+				PRODUCT_BUNDLE_IDENTIFIER = kou.PDFSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -301,13 +309,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = DCRVG4K4H7;
+				DEVELOPMENT_TEAM = 5YB9W4WX6T;
 				INFOPLIST_FILE = PDFSample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = Kou.SamplePDF;
+				PRODUCT_BUNDLE_IDENTIFIER = kou.PDFSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
